@@ -22,11 +22,20 @@ class MaximumCommand extends Command
         // get triangle data as multidimensional array
         $triangle = json_decode($input->getArgument('triangle'), true);
 
-        // as triangle is equilateral, the root array has the same size as its last child array
-        $size = count($triangle);
+        // get triangle height
+        $height = count($triangle);
+
+        // get triangle width
+        $width = count(end($triangle));
+
+        // verify if root array has at least two values
+        if ($height < 2) throw new \LengthException("Triangle is smaller than necessary");
+
+        // verify if last root array value has the same size of root array
+        if ($width != $height) throw new \DomainException("Triangle is not equilateral");
 
         // iterate from the penultimate index to top on root array
-        for ($i = $size - 2; $i >= 0 ; $i--) {
+        for ($i = $height - 2; $i >= 0 ; $i--) {
             // sum each item with its nearest elements and saves the bigger value
             for ($j = 0; $j <= $i ; $j++) {
                 $triangle[$i][$j] += max($triangle[$i + 1][$j], $triangle[$i + 1][$j + 1]);
