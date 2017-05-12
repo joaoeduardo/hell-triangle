@@ -1,0 +1,23 @@
+{
+    "name": "joaoeduardo/hell-triangle",
+    "description": "Hell Triangle - Challenge",
+    "type": "project",
+    "require": {
+        "symfony/console": "^3.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "JoaoEduardo\\HellTriangle\\": "source/"
+        }
+    },
+    "bin": [
+        "bin/hell-triangle"
+    ],
+    "scripts": {
+        "hell-triangle": "hell-triangle",
+        "phpunit": "phpunit"
+    }
+}
