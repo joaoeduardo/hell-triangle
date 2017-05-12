@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php declare(strict_types = 1);
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+use JoaoEduardo\HellTriangle\MaximumCommand;
+use Symfony\Component\Console\Application;
+
+$application = new Application('Hell Triangle', '0.1-dev');
+$application->add(new MaximumCommand());
+$application->run();
