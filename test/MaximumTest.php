@@ -42,4 +42,38 @@ final class MaximumTest extends TestCase
             'command' => $command->getName()
         ]);
     }
+
+    public function testEmptyTriangle(): void
+    {
+        $this->expectException(\LengthException::class);
+
+        $application = new Application();
+        $application->add(new MaximumCommand());
+
+        $command = $application->find('maximum');
+
+        $tester = new CommandTester($command);
+
+        $tester->execute([
+            'command' => $command->getName(),
+            'triangle' => '[]'
+        ]);
+    }
+
+    public function testNotEquilateralTriangle(): void
+    {
+        $this->expectException(\DomainException::class);
+
+        $application = new Application();
+        $application->add(new MaximumCommand());
+
+        $command = $application->find('maximum');
+
+        $tester = new CommandTester($command);
+
+        $tester->execute([
+            'command' => $command->getName(),
+            'triangle' => '[[1],[2]]'
+        ]);
+    }
 }
